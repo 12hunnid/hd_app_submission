@@ -64,7 +64,7 @@ function Dialogue:CreateDialogue(Player)
 		for i,v in pairs(ScreenGui:GetChildren()) do -- loops through gui to get all the sprites
 			if v:GetAttribute("Sprite") == false then
 				SpriteD = true
-				spawn(function()
+				task.spawn(function()
 					game.TweenService:Create(v, TweenInfo.new(.2, Enum.EasingStyle.Back, Enum.EasingDirection.In), {ImageColor3 = Color3.fromRGB(111, 111, 111), Size = UDim2.new(0.32, 0, 0.7, 0)}):Play() -- animates sprite
 					wait(.2)
 					game.TweenService:Create(v, TweenInfo.new(.3, Enum.EasingStyle.Back, Enum.EasingDirection.In), {Position = v.Position + UDim2.new(0, 0, 2, 0)}):Play() -- animates sprite
@@ -118,7 +118,7 @@ function Dialogue:CreateDialogue(Player)
 		Button.Response.Text = "" -- clears text
 		Button.Size = UDim2.new(2, 0, 1.552, 0) -- start size
 		Button.Parent = Frame
-		delay(.05, function()
+		task.delay(.05, function()
 			game.TweenService:Create(Button, TweenInfo.new(.3, Enum.EasingStyle.Back), {Size = UDim2.new(3.48, 0, 1.552, 0)}):Play() -- animates button
 			TWEffect(Button.Response, Msg, 0.01) -- displays the text
 		end)
@@ -165,7 +165,7 @@ function Dialogue:CreateDialogue(Player)
 	end
 	
 	function SetUpDialogue:ResetSprites(Sprite1, Sprite2)
-				-- ⌄⌄ Y vector variables that will change depending on if a sprite is a player ⌄⌄
+		-- ⌄⌄ Y vector variables that will change depending on if a sprite is a player ⌄⌄
 		local Y1 = 0.6
 		local Y2 = 0.6
 		if game.Players:FindFirstChild(Sprite1.Name) then
@@ -215,7 +215,7 @@ function Dialogue:CreateDialogue(Player)
 		local NotSpeakingPos = NotSpeaking.Position
 		game.TweenService:Create(NotSpeaking, TweenInfo.new(.2, Enum.EasingStyle.Quad), {ImageColor3 = Color3.fromRGB(156, 156, 156), Size = UDim2.new(0.42, 0, 0.8, 0), Position = UDim2.new(NotSpeakingPos.X.Scale, 0, Y2, 0)}):Play() -- lowers non speaking sprite
 		
-		spawn(function()
+		task.spawn(function()
 			TWEffect(Overlay.SpriteName, Speaking.Name, 0.01) -- shows speaker name
 		end)
 	end
@@ -239,7 +239,7 @@ function Dialogue:CreateDialogue(Player)
 			Y = 0.7
 		end
 		
-		delay(.35, function()
+		task.delay(.35, function()
 			local X = 0.835
 			if L then -- flips sprite if on left side
 				X = 0.145
@@ -256,7 +256,7 @@ function Dialogue:CreateDialogue(Player)
 		local SpriteFunctions = {}
 		
 		function SpriteFunctions:RemoveSprite()
-			spawn(function()
+			task.spawn(function()
 				game.Debris:AddItem(Sprite, .65) -- removes sprite later
 				game.TweenService:Create(Sprite, TweenInfo.new(.2, Enum.EasingStyle.Back, Enum.EasingDirection.In), {ImageColor3 = Color3.fromRGB(111, 111, 111), Size = UDim2.new(0.32, 0, 0.7, 0)}):Play() -- make the sprite smaller
 				wait(.2)
