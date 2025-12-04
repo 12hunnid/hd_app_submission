@@ -61,7 +61,7 @@ function Dialogue:CreateDialogue(Player)
 		self.Visible = false -- hides dialogue 
 		game.Debris:AddItem(ScreenGui, 1.4) -- adds gui to the debris which will delete it 1.4 seconds later
 		local SpriteD = false
-		for i,v in pairs(ScreenGui:GetChildren()) do -- loops through gui to get all the sprites
+		for i,v in ipairs(ScreenGui:GetChildren()) do -- loops through gui to get all the sprites
 			if v:GetAttribute("Sprite") == false then
 				SpriteD = true
 				task.spawn(function()
@@ -151,7 +151,7 @@ function Dialogue:CreateDialogue(Player)
 		self.CanClick = false -- disables clicks
 		local Frame = CreateButtonFrame()
 		game.Debris:AddItem(Frame, .3) -- removes frame later
-		for i,v in pairs(Frame:GetChildren()) do
+		for i,v in ipairs(Frame:GetChildren()) do
 			if v:IsA("ImageButton") then -- animates button shrink
 				game.TweenService:Create(v, TweenInfo.new(.3, Enum.EasingStyle.Back, Enum.EasingDirection.In), {Size = UDim2.new(2, 0, 1.552, 0)}):Play()
 			end
@@ -271,8 +271,8 @@ function Dialogue:CreateDialogue(Player)
 		function SpriteFunctions:ReturnExpressions()
 			local Expressions = {} -- expression table
 			
-			for i,v in pairs(CS.Parent.Expressions:GetChildren()) do
-				Expressions[v.Name] = v -- 
+			for i,v in ipairs(CS.Parent.Expressions:GetChildren()) do
+				Expressions[v.Name] = v -- adds the expression to the table
 			end
 			
 			return Expressions -- return the table
