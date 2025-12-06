@@ -1,3 +1,5 @@
+local Debris = game:GetService("Debris")
+
 local SFX = require(script.SoundPlayer)
 
 local Dialogue = {}
@@ -59,7 +61,7 @@ function Dialogue:CreateDialogue(Player)
 	
 	function SetUpDialogue:RemoveUi()
 		self.Visible = false -- hides dialogue 
-		game.Debris:AddItem(ScreenGui, 1.4) -- adds gui to the debris which will delete it 1.4 seconds later
+		Debris:AddItem(ScreenGui, 1.4) -- adds gui to the debris which will delete it 1.4 seconds later
 		local SpriteD = false
 		for i,v in ipairs(ScreenGui:GetChildren()) do -- loops through gui to get all the sprites
 			if v:GetAttribute("Sprite") == false then
@@ -150,7 +152,7 @@ function Dialogue:CreateDialogue(Player)
 	function SetUpDialogue:RemoveButtons()
 		self.CanClick = false -- disables clicks
 		local Frame = CreateButtonFrame()
-		game.Debris:AddItem(Frame, .3) -- removes frame later
+		Debris:AddItem(Frame, .3) -- removes frame later
 		for i,v in ipairs(Frame:GetChildren()) do
 			if v:IsA("ImageButton") then -- animates button shrink
 				game.TweenService:Create(v, TweenInfo.new(.3, Enum.EasingStyle.Back, Enum.EasingDirection.In), {Size = UDim2.new(2, 0, 1.552, 0)}):Play()
@@ -257,7 +259,7 @@ function Dialogue:CreateDialogue(Player)
 		
 		function SpriteFunctions:RemoveSprite()
 			task.spawn(function()
-				game.Debris:AddItem(Sprite, .65) -- removes sprite later
+				Debris:AddItem(Sprite, .65) -- removes sprite later
 				game.TweenService:Create(Sprite, TweenInfo.new(.2, Enum.EasingStyle.Back, Enum.EasingDirection.In), {ImageColor3 = Color3.fromRGB(111, 111, 111), Size = UDim2.new(0.32, 0, 0.7, 0)}):Play() -- make the sprite smaller
 				wait(.2)
 				game.TweenService:Create(Sprite, TweenInfo.new(.3, Enum.EasingStyle.Back, Enum.EasingDirection.In), {Position = Sprite.Position + UDim2.new(0, 0, 2, 0)}):Play() -- moves the sprite down
